@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.chord-svg {
+  width: 240px;
+  height: 330px;
+  display: block;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+}
+
+.card-bg {
+  fill: #ffffff;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  fill: #000000;
+}
+
+.grid line {
+  stroke: #000000;
+  stroke-width: 2.6;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.grid line.nut {
+  stroke-width: 7;
+}
+
+.barres rect,
+.dots circle {
+  fill: #000000;
+}
+
+.barres text,
+.dots text {
+  fill: #ffffff;
+  font-size: 16px;
+  font-weight: 950;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.markers text {
+  fill: #000000;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.fret-number {
+  fill: #000000;
+  font-size: 42px;
+  font-weight: 750;
+}
+
+.string-labels text {
+  fill: #000000;
+  font-size: 18px;
+  font-weight: 800;
+}
