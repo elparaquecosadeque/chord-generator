@@ -21,16 +21,21 @@ jobs:
         working-directory: chord-finder-2
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           cache-dependency-path: chord-finder-2/package-lock.json
+
       - run: npm ci
       - run: npm run build:gh-pages
+
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: chord-finder-2/dist/neon-chord-finder/browser
+
       - uses: actions/deploy-pages@v4
