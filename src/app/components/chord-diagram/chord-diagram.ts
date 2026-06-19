@@ -75,7 +75,7 @@ export class ChordDiagram {
         const y = this.dotY(barreFret) - this.dotRadius;
         const width = this.stringX(lastString) - this.stringX(firstString) + this.dotRadius * 2;
         const labelX = x + width / 2;
-        const labelY = y + this.dotRadius + 5;
+        const labelY = y + this.dotRadius;
         const finger = fingers[firstString] > 0 ? fingers[firstString] : undefined;
 
         return {

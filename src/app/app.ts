@@ -48,13 +48,14 @@ export class App {
       const clone = svg.cloneNode(true) as SVGSVGElement;
 
       clone.insertAdjacentHTML('afterbegin', `<style>
-      .card-bg{fill:#fff}.title{font-size:42px;font-weight:950;fill:#000}
+      .chord-svg{font-family:Roboto,Arial,sans-serif;font-weight:400}
+      .card-bg{fill:#fff}.title{font-size:42px;font-weight:400;fill:#000}
       .grid line{stroke:#000;stroke-width:2.6;stroke-linecap:square}
       .grid line.nut{stroke-width:7}.barres rect,.dots circle{fill:#000}
-      .barres text,.dots text{fill:#fff;font-size:16px;font-weight:950;dominant-baseline:middle}
-      .markers text{fill:#000;font-size:30px;font-weight:800}
-      .fret-number{fill:#000;font-size:42px;font-weight:750}
-      .string-labels text{fill:#000;font-size:18px;font-weight:800}
+      .barres text,.dots text{fill:#fff;font-size:16px;font-weight:400;dominant-baseline:central;alignment-baseline:middle}
+      .markers text{fill:#000;font-size:30px;font-weight:400}
+      .fret-number{fill:#000;font-size:42px;font-weight:400}
+      .string-labels text{fill:#000;font-size:18px;font-weight:400}
     </style>`);
 
       const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' }));

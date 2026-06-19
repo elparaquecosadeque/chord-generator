@@ -4,7 +4,7 @@ import { ChordSearchResult, ChordsDbInstrument, ParsedChord } from '../models/ch
 
 @Injectable({ providedIn: 'root' })
 export class ChordService {
-  readonly maxBatchSize = 4;
+  readonly maxBatchSize = 5;
 
   private readonly guitarDb = guitarDbJson as ChordsDbInstrument;
 
