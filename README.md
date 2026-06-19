@@ -1,59 +1,54 @@
-# NeonChordFinder
+# Chord Generator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.11.
+Angular app for entering guitar chord names, rendering chord diagrams, choosing alternate positions, and exporting the visible diagrams as one PNG.
 
-## Development server
+Repository: https://github.com/elparaquecosadeque/chord-generator
 
-To start a local development server, run:
+Contributions are welcome. This project was built with AI assistance under supervision from the repository owner.
 
-```bash
-ng serve
-```
+## Use The App
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Type up to 5 chords separated by commas.
+2. Use sharps or flats, for example `C, F#, C#m, Bb, Am7`.
+3. If a chord has multiple positions, choose one from the position selector.
+4. Click `Exportar PNG` to download the currently visible chord diagrams as one image.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Run Locally
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
+Open `http://localhost:4200/`.
 
-To build the project run:
+## Build
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+GitHub Pages build:
 
 ```bash
-ng test
+npm run build:gh-pages
 ```
 
-## Running end-to-end tests
+The static app is generated in `dist/neon-chord-finder/browser`.
 
-For end-to-end (e2e) testing, run:
+## Code Map
 
-```bash
-ng e2e
-```
+- `src/app/app.ts` - root app state, chord search trigger, selected positions, PNG export.
+- `src/app/app.html` - page layout, input, export button, result cards, footer.
+- `src/app/app.scss` - page, form, cards, and footer styles.
+- `src/app/services/chord.service.ts` - parses chord input and reads chord data from `@tombatossals/chords-db`.
+- `src/app/models/chord.model.ts` - TypeScript shapes for chord data and search results.
+- `src/app/components/chord-diagram/chord-diagram.ts` - computes SVG fret lines, dots, barres, labels, and position code.
+- `src/app/components/chord-diagram/chord-diagram.html` - SVG guitar chord diagram markup.
+- `src/app/components/chord-diagram/chord-diagram.scss` - SVG diagram styling.
+- `.github/workflows/pages.yml` - GitHub Pages deployment workflow.
+- `package.json` - npm scripts and dependencies.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Deploy
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Push to `main`. GitHub Actions builds the app with `/chord-generator/` as the base href and publishes the browser output to GitHub Pages.
