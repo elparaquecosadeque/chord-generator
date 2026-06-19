@@ -51,4 +51,4 @@ The static app is generated in `dist/neon-chord-finder/browser`.
 
 ## Deploy
 
-Push to `main`. GitHub Actions builds the app with `/chord-generator/` as the base href and publishes the browser output to GitHub Pages.
+Push to `master`. GitHub Actions builds the app with `/chord-generator/` as the base href and publishes the browser output to GitHub Pages.
