@@ -96,6 +96,22 @@ h1 {
     inset 0 0 18px rgba(255, 43, 214, 0.2);
 }
 
+.search-row button {
+  width: fit-content;
+  padding: 12px 18px;
+  color: #000000;
+  background: #00fff0;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.search-row button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .warning {
   margin: 16px 0 0;
   color: #ffee00;
