@@ -87,7 +87,6 @@ export class ChordService {
         error: 'Nombre inválido. Prueba C, F#, C#m, Bb, Am7 o Dsus4.'
       };
     }
-    console.log(this.guitarDb.chords);
     const chordFamily = this.guitarDb.chords[parsed.dbRoot];
 
     if (!chordFamily) {
