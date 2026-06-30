@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 import { ChordsDbPosition } from '../../models/chord.model';
 
 interface BarreSpan {
@@ -21,6 +21,7 @@ interface DotMarker {
   selector: 'app-chord-diagram',
   imports: [],
   templateUrl: './chord-diagram.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './chord-diagram.scss'
 })
 export class ChordDiagram {

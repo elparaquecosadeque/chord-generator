@@ -1,4 +1,4 @@
-import { Component, ElementRef, computed, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, computed, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChordDiagram } from './components/chord-diagram/chord-diagram';
 import { ChordSearchResult, ChordsDbPosition } from './models/chord.model';
@@ -8,6 +8,7 @@ import { ChordService } from './services/chord.service';
   selector: 'app-root',
   imports: [FormsModule, ChordDiagram],
   templateUrl: './app.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss'
 })
 export class App {

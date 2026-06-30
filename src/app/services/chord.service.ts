@@ -53,7 +53,8 @@ export class ChordService {
     sus: 'sus4',
     sus2: 'sus2',
     sus4: 'sus4',
-    add9: 'add9'
+    add9: 'add9',
+    4: 'sus4'
   };
 
   search(input: string): { results: ChordSearchResult[]; wasLimited: boolean } {
@@ -86,7 +87,7 @@ export class ChordService {
         error: 'Nombre inválido. Prueba C, F#, C#m, Bb, Am7 o Dsus4.'
       };
     }
-
+    console.log(this.guitarDb.chords);
     const chordFamily = this.guitarDb.chords[parsed.dbRoot];
 
     if (!chordFamily) {
