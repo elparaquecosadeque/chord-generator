@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChordFinderComponent } from '@the-chords/chord-finder';
+import { ChordFinderComponent } from '@gblp/chord-finder';
 
 @Component({
   selector: 'app-root',

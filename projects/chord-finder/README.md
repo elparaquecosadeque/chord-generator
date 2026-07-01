@@ -1,10 +1,10 @@
-# @the-chords/chord-finder
+# @gblp/chord-finder
 
 Standalone Angular 22 component for finding guitar chords and rendering SVG chord diagrams.
 
 ```ts
 import { Component } from '@angular/core';
-import { ChordFinderComponent } from '@the-chords/chord-finder';
+import { ChordFinderComponent } from '@gblp/chord-finder';
 
 @Component({
   imports: [ChordFinderComponent],

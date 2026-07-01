@@ -5,7 +5,7 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@the-chords/chord-finder": [
+      "@gblp/chord-finder": [
         "./dist/chord-finder"
       ]
     },
