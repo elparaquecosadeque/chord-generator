@@ -10,15 +10,15 @@ describe('ChordService', () => {
   it('finds common chords and their positions', () => {
     const { results, wasLimited } = service.search('C, F#, C#m, Bb, Am7');
 
-    expect(wasLimited).toBeFalse();
+    expect(wasLimited).toBe(false);
     expect(results.map((result) => result.displayName)).toEqual(['C', 'F#', 'C#m', 'Bb', 'Am7']);
-    expect(results.every((result) => result.positions.length > 0)).toBeTrue();
+    expect(results.every((result) => result.positions.length > 0)).toBe(true);
   });
 
   it('limits searches to five chords', () => {
     const { results, wasLimited } = service.search('C, D, E, F, G, A');
 
-    expect(wasLimited).toBeTrue();
+    expect(wasLimited).toBe(true);
     expect(results.map((result) => result.displayName)).toEqual(['C', 'D', 'E', 'F', 'G']);
   });
 

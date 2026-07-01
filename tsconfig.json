@@ -4,6 +4,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
+    "paths": {
+      "@gblp/chord-finder": [
+        "./dist/chord-finder"
+      ]
+    },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -29,6 +34,12 @@
   "references": [
     {
       "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./projects/chord-finder/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/chord-finder/tsconfig.spec.json"
     }
   ]
 }
