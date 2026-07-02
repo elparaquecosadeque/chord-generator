@@ -1,6 +1,33 @@
 import { Injectable } from '@angular/core';
 import guitarDbJson from '@tombatossals/chords-db/lib/guitar.json';
-import { ChordSearchResult, ChordsDbInstrument, ParsedChord } from '../models/chord.model';
+import {
+  ChordSearchResult,
+  ChordsDbInstrument,
+  Language,
+  ParsedChord,
+} from '../models/chord.model';
+
+const ERROR_COPY = {
+  en: {
+    invalid: 'Invalid chord name. Try C, F#, C#m, Bb, Am7, or Dsus4.',
+    missingRoot: 'Chord root not found in chords-db.',
+    missingType: (suffix: string) =>
+      `The type "${suffix}" is not available for this chord.`,
+  },
+  es: {
+    invalid: 'Nombre inválido. Prueba C, F#, C#m, Bb, Am7 o Dsus4.',
+    missingRoot: 'Raíz no encontrada en chords-db.',
+    missingType: (suffix: string) =>
+      `El tipo "${suffix}" no existe para este acorde en la base actual.`,
+  },
+} satisfies Record<
+  Language,
+  {
+    invalid: string;
+    missingRoot: string;
+    missingType: (suffix: string) => string;
+  }
+>;
 
 @Injectable({ providedIn: 'root' })
 export class ChordService {
@@ -29,7 +56,7 @@ export class ChordService {
     Bb: 'Bb',
     B: 'B',
     Cb: 'B',
-    'B#': 'C'
+    'B#': 'C',
   };
 
   private readonly suffixAliases: Record<string, string> = {
@@ -54,10 +81,13 @@ export class ChordService {
     sus2: 'sus2',
     sus4: 'sus4',
     add9: 'add9',
-    4: 'sus4'
+    4: 'sus4',
   };
 
-  search(input: string): { results: ChordSearchResult[]; wasLimited: boolean } {
+  search(
+    input: string,
+    language: Language = 'en',
+  ): { results: ChordSearchResult[]; wasLimited: boolean } {
     const tokens = input
       .split(',')
       .map((token) => token.trim())
@@ -66,8 +96,10 @@ export class ChordService {
     const limitedTokens = tokens.slice(0, this.maxBatchSize);
 
     return {
-      results: limitedTokens.map((token, index) => this.searchSingle(token, index)),
-      wasLimited: tokens.length > this.maxBatchSize
+      results: limitedTokens.map((token, index) =>
+        this.searchSingle(token, index, language),
+      ),
+      wasLimited: tokens.length > this.maxBatchSize,
     };
   }
 
@@ -75,8 +107,13 @@ export class ChordService {
     return this.guitarDb.suffixes;
   }
 
-  private searchSingle(token: string, index: number): ChordSearchResult {
+  private searchSingle(
+    token: string,
+    index: number,
+    language: Language,
+  ): ChordSearchResult {
     const parsed = this.parseChordName(token);
+    const copy = ERROR_COPY[language];
 
     if (!parsed) {
       return {
@@ -84,7 +121,7 @@ export class ChordService {
         raw: token,
         displayName: token,
         positions: [],
-        error: 'Nombre inválido. Prueba C, F#, C#m, Bb, Am7 o Dsus4.'
+        error: copy.invalid,
       };
     }
     const chordFamily = this.guitarDb.chords[parsed.dbRoot];
@@ -95,7 +132,7 @@ export class ChordService {
         raw: token,
         displayName: parsed.displayName,
         positions: [],
-        error: 'Raíz no encontrada en chords-db.'
+        error: copy.missingRoot,
       };
     }
 
@@ -108,7 +145,7 @@ export class ChordService {
         displayName: parsed.displayName,
         dbName: `${parsed.dbRoot} ${parsed.suffix}`,
         positions: [],
-        error: `El tipo "${parsed.suffix}" no existe para este acorde en la base actual.`
+        error: copy.missingType(parsed.suffix),
       };
     }
 
@@ -147,7 +184,7 @@ export class ChordService {
       root,
       dbRoot,
       displayName: `${root}${this.displaySuffix(suffix)}`,
-      suffix
+      suffix,
     };
   }
 

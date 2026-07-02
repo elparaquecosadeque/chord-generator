@@ -1,3 +1,5 @@
+export type Language = 'en' | 'es';
+
 export interface ChordsDbPosition {
   frets: number[];
   fingers?: number[];

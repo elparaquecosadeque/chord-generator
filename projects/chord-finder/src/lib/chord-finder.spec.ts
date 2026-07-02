@@ -8,9 +8,8 @@ describe('ChordFinderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChordFinderComponent]
-    })
-    .compileComponents();
+      imports: [ChordFinderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ChordFinderComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,12 @@ describe('ChordFinderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('renders Spanish content when requested', async () => {
+    fixture.componentRef.setInput('language', 'es');
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.textContent).toContain('Buscador de acordes');
   });
 });

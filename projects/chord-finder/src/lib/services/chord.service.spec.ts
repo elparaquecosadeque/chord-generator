@@ -11,7 +11,13 @@ describe('ChordService', () => {
     const { results, wasLimited } = service.search('C, F#, C#m, Bb, Am7');
 
     expect(wasLimited).toBe(false);
-    expect(results.map((result) => result.displayName)).toEqual(['C', 'F#', 'C#m', 'Bb', 'Am7']);
+    expect(results.map((result) => result.displayName)).toEqual([
+      'C',
+      'F#',
+      'C#m',
+      'Bb',
+      'Am7',
+    ]);
     expect(results.every((result) => result.positions.length > 0)).toBe(true);
   });
 
@@ -19,13 +25,21 @@ describe('ChordService', () => {
     const { results, wasLimited } = service.search('C, D, E, F, G, A');
 
     expect(wasLimited).toBe(true);
-    expect(results.map((result) => result.displayName)).toEqual(['C', 'D', 'E', 'F', 'G']);
+    expect(results.map((result) => result.displayName)).toEqual([
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+    ]);
   });
 
   it('returns a useful error for invalid chord names', () => {
     const { results } = service.search('H');
+    const { results: spanishResults } = service.search('H', 'es');
 
     expect(results[0].positions).toEqual([]);
-    expect(results[0].error).toContain('Nombre');
+    expect(results[0].error).toContain('Invalid');
+    expect(spanishResults[0].error).toContain('Nombre');
   });
 });

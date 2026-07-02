@@ -1,4 +1,20 @@
 :host {
+  --_chords-background: var(--chords-background, #020004);
+  --_chords-background-alt: var(--chords-background-alt, #050012);
+  --_chords-surface: var(--chords-surface, #000000);
+  --_chords-surface-elevated: var(
+    --chords-surface-elevated,
+    rgba(0, 0, 0, 0.8)
+  );
+  --_chords-text: var(--chords-text, #f8f8ff);
+  --_chords-muted: var(--chords-muted, #dedbff);
+  --_chords-primary: var(--chords-primary, #00fff0);
+  --_chords-secondary: var(--chords-secondary, #ff2bd6);
+  --_chords-highlight: var(--chords-highlight, #ffee00);
+  --_chords-danger: var(--chords-danger, #ff315a);
+  --_chords-border: var(--chords-border, rgba(0, 255, 240, 0.76));
+  --_chords-on-primary: var(--chords-on-primary, #000000);
+
   box-sizing: border-box;
   display: block;
   min-height: 100%;
@@ -21,28 +37,45 @@
 .page-shell {
   min-height: 100%;
   padding: clamp(24px, 5vw, 56px);
-  color: #f8f8ff;
+  color: var(--_chords-text);
   background:
-    radial-gradient(circle at 10% 12%, rgba(0, 255, 255, 0.25), transparent 28%),
-    radial-gradient(circle at 92% 4%, rgba(255, 0, 230, 0.25), transparent 24%),
-    radial-gradient(circle at 50% 110%, rgba(255, 242, 0, 0.16), transparent 30%),
-    linear-gradient(135deg, #020004 0%, #050012 48%, #000000 100%);
+    radial-gradient(
+      circle at 10% 12%,
+      color-mix(in srgb, var(--_chords-primary) 25%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 4%,
+      color-mix(in srgb, var(--_chords-secondary) 25%, transparent),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 50% 110%,
+      color-mix(in srgb, var(--_chords-highlight) 16%, transparent),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      var(--_chords-background) 0%,
+      var(--_chords-background-alt) 48%,
+      var(--_chords-surface) 100%
+    );
 }
 
 .hero-card {
   max-width: 1020px;
   padding: clamp(24px, 4vw, 38px);
-  border: 1px solid rgba(0, 255, 255, 0.8);
+  border: 1px solid var(--_chords-border);
   border-radius: 30px;
-  background: rgba(0, 0, 0, 0.78);
+  background: var(--_chords-surface-elevated);
   box-shadow:
-    0 0 30px rgba(0, 255, 255, 0.32),
-    inset 0 0 26px rgba(255, 0, 230, 0.13);
+    0 0 30px color-mix(in srgb, var(--_chords-primary) 32%, transparent),
+    inset 0 0 26px color-mix(in srgb, var(--_chords-secondary) 13%, transparent);
 }
 
 .eyebrow {
   margin: 0 0 14px;
-  color: #00fff0;
+  color: var(--_chords-primary);
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 0.22em;
@@ -56,21 +89,21 @@ h1 {
   line-height: 0.88;
   letter-spacing: -0.06em;
   text-shadow:
-    0 0 18px rgba(0, 255, 240, 0.8),
-    0 0 32px rgba(255, 0, 230, 0.5);
+    0 0 18px color-mix(in srgb, var(--_chords-primary) 80%, transparent),
+    0 0 32px color-mix(in srgb, var(--_chords-secondary) 50%, transparent);
 }
 
 .description,
 .hint {
   max-width: 760px;
   margin: 22px 0 0;
-  color: #dedbff;
+  color: var(--_chords-muted);
   font-size: 18px;
   line-height: 1.55;
 }
 
 .description strong {
-  color: #ffee00;
+  color: var(--_chords-highlight);
 }
 
 .search-row {
@@ -82,7 +115,7 @@ h1 {
 .search-row label,
 .select-label,
 .result-label {
-  color: #ff2bd6;
+  color: var(--_chords-secondary);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.14em;
@@ -92,30 +125,30 @@ h1 {
 .search-row input {
   width: min(760px, 100%);
   padding: 18px 20px;
-  color: #ffffff;
-  background: #000000;
-  border: 2px solid #ff2bd6;
+  color: var(--_chords-text);
+  background: var(--_chords-surface);
+  border: 2px solid var(--_chords-secondary);
   border-radius: 18px;
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 900;
   outline: none;
   box-shadow:
-    0 0 18px rgba(255, 43, 214, 0.58),
-    inset 0 0 18px rgba(0, 255, 255, 0.12);
+    0 0 18px color-mix(in srgb, var(--_chords-secondary) 58%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--_chords-primary) 12%, transparent);
 }
 
 .search-row input:focus {
-  border-color: #00fff0;
+  border-color: var(--_chords-primary);
   box-shadow:
-    0 0 24px rgba(0, 255, 240, 0.78),
-    inset 0 0 18px rgba(255, 43, 214, 0.2);
+    0 0 24px color-mix(in srgb, var(--_chords-primary) 78%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--_chords-secondary) 20%, transparent);
 }
 
 .search-row button {
   width: fit-content;
   padding: 12px 18px;
-  color: #000000;
-  background: #00fff0;
+  color: var(--_chords-on-primary);
+  background: var(--_chords-primary);
   border: 0;
   border-radius: 12px;
   font-weight: 900;
@@ -129,7 +162,7 @@ h1 {
 
 .warning {
   margin: 16px 0 0;
-  color: #ffee00;
+  color: var(--_chords-highlight);
   font-weight: 900;
 }
 
@@ -144,17 +177,18 @@ h1 {
 .result-card {
   width: 292px;
   padding: 18px;
-  border: 1px solid rgba(0, 255, 240, 0.76);
+  border: 1px solid var(--_chords-border);
   border-radius: 30px;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--_chords-surface-elevated);
   box-shadow:
-    0 0 22px rgba(0, 255, 240, 0.25),
-    inset 0 0 18px rgba(255, 43, 214, 0.12);
+    0 0 22px color-mix(in srgb, var(--_chords-primary) 25%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--_chords-secondary) 12%, transparent);
 }
 
 .result-card.has-error {
-  border-color: #ff315a;
-  box-shadow: 0 0 22px rgba(255, 49, 90, 0.35);
+  border-color: var(--_chords-danger);
+  box-shadow: 0 0 22px
+    color-mix(in srgb, var(--_chords-danger) 35%, transparent);
 }
 
 .result-header {
@@ -170,13 +204,13 @@ h1 {
 
 .result-header h2 {
   margin: 4px 0 0;
-  color: #ffffff;
+  color: var(--_chords-text);
   font-size: 30px;
 }
 
 .db-name {
   margin-top: 6px;
-  color: #00fff0;
+  color: var(--_chords-primary);
   font-size: 12px;
   font-weight: 800;
 }
@@ -189,16 +223,16 @@ h1 {
 select {
   width: 100%;
   padding: 11px 12px;
-  color: #ffffff;
-  background: #050008;
-  border: 1px solid #ff2bd6;
+  color: var(--_chords-text);
+  background: var(--_chords-background-alt);
+  border: 1px solid var(--_chords-secondary);
   border-radius: 12px;
   font-weight: 800;
   outline: none;
 }
 
 select:focus {
-  border-color: #00fff0;
+  border-color: var(--_chords-primary);
 }
 
 .svg-wrap {
@@ -210,7 +244,7 @@ select:focus {
 }
 
 .error-text {
-  color: #ff7b95;
+  color: var(--_chords-danger);
   font-weight: 800;
   line-height: 1.45;
 }
@@ -219,8 +253,9 @@ select:focus {
   max-width: 1020px;
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid rgba(0, 255, 240, 0.42);
-  color: #dedbff;
+  border-top: 1px solid
+    color-mix(in srgb, var(--_chords-primary) 42%, transparent);
+  color: var(--_chords-muted);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -234,6 +269,6 @@ select:focus {
 }
 
 .app-footer a {
-  color: #00fff0;
+  color: var(--_chords-primary);
   font-weight: 900;
 }
